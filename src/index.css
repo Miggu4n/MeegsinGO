@@ -1,0 +1,50 @@
+/* Color Theme Swatches in Hex */
+.Twilight-light-1-hex { color: #022859; }
+.Twilight-light-2-hex { color: #034C8C; }
+.Twilight-light-3-hex { color: #F2884B; }
+.Twilight-light-4-hex { color: #F2A7A0; }
+.Twilight-light-5-hex { color: #0D0D0D; }
+
+/* Color Theme Swatches in RGBA */
+.Twilight-light-1-rgba { color: rgba(1, 39, 89, 1); }
+.Twilight-light-2-rgba { color: rgba(2, 76, 140, 1); }
+.Twilight-light-3-rgba { color: rgba(242, 136, 75, 1); }
+.Twilight-light-4-rgba { color: rgba(242, 166, 159, 1); }
+.Twilight-light-5-rgba { color: rgba(12, 12, 12, 1); }
+
+/* Color Theme Swatches in HSLA */
+.Twilight-light-1-hsla { color: hsla(213, 96, 17, 1); }
+.Twilight-light-2-hsla { color: hsla(208, 96, 28, 1); }
+.Twilight-light-3-hsla { color: hsla(22, 86, 62, 1); }
+.Twilight-light-4-hsla { color: hsla(5, 76, 78, 1); }
+.Twilight-light-5-hsla { color: hsla(0, 0, 5, 1); }
+
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(1, 39, 89, 1);
+  color: rgba(242, 166, 159, 1);
+  font-family: "Poppins", sans-serif;
+}
+
+.navbar{
+  padding: 5px 0px 5px 0px;
+  background-color: #0D0D0D;
+  height: auto;
+}
+
+.navbar ul{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 0;
+  margin: 0;
+
+}
+.navbar ul li{
+  margin: 0 auto;
+  padding: 0;
+  font-size: 18px;
+  list-style: none;
+}
