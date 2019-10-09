@@ -1,7 +1,7 @@
 import React from 'react';
 //import ReactDOM from 'react-dom';
 
-class MainPlaylists extends React.Component{
+class Playlists extends React.Component{
     render(){
         return(
             <div>
@@ -11,4 +11,4 @@ class MainPlaylists extends React.Component{
     }
 }
 
-export default MainPlaylists
+export default Playlists

@@ -1,0 +1,57 @@
+.searchBox{
+    width: 75%;    
+    margin: 0 auto;
+}
+.searchBox input[type="text"]{
+    margin: 15px 0px 15px -10px;
+    padding: 5px 5px 5px 15px;
+    font-size: 18px;
+    width: 100%;
+    
+}
+
+.songList{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.songRow{
+    display: grid;
+    grid-template-columns: auto 40px;
+    margin: 0px 0px 15px 0px;
+    list-style: none;
+
+}
+.song{
+    display: grid;
+    grid-template-columns: 120px auto ;
+    align-items: center;
+}
+.thumbnail{
+    width: 100%;
+}
+.info{
+    display: grid;
+    grid-template-rows: auto;
+    padding: 10px;
+}
+.title{
+    font-weight: bold;
+    font-size: 14px;
+    
+}
+.author{
+    font-weight: lighter;
+    font-size: 12px;
+}
+.title, .author{
+    overflow: hidden;
+    width:100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    padding: 0;
+    margin: 0;
+
+}

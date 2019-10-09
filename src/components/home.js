@@ -1,14 +1,14 @@
 import React from 'react';
 //import ReactDOM from 'react-dom';
 
-class MainHome extends React.Component{
+class Home extends React.Component{
     render(){
         return(
             <div>
-                <h1>Sono nella home no homo</h1>
+                <h1>Sono nella home no homo {this.props.ugay}</h1>
             </div>
         )
     }
 }
 
-export default MainHome
+export default Home
