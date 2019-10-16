@@ -2,13 +2,68 @@ import React from 'react';
 
 import "./css/search.css"
 
+class Popup extends React.Component {
+
+    constructor(props){
+        super(props)
+        this.state = {
+            playlistsLocal: []
+        }
+    }
+    
+    componentDidMount(){
+        this.setState({
+            playlistsLocal: JSON.parse(localStorage.getItem("playlists"))
+        })
+    }
+
+    saveToLocalStorage = () =>{
+        localStorage.setItem("playlists", JSON.stringify(this.state.playlistsLocal))
+    }
+
+    addToPlaylist = playlistId =>{
+        let playlistToModify = this.state.playlistsLocal.filter(playlist => playlist.id === playlistId)
+        playlistToModify[0].songs = [...playlistToModify[0].songs, this.props.song]
+        
+        this.setState({ playlistsLocal: [...this.state.playlistsLocal.filter(playlist => playlist.id !== playlistId), playlistToModify[0]] }, () => {
+            this.saveToLocalStorage();
+        })
+        
+
+        
+    }
+    render() {
+      return (
+        <div className='popup'>
+          <div className='popup_inner'>
+            <ul>
+                {
+                    this.state.playlistsLocal.map(playlist => {
+                        return(
+                            <li key={playlist.id}
+                                onClick={()=> this.addToPlaylist(playlist.id)}>{playlist.title}
+                            </li>
+                        )
+                    })
+                }
+            </ul>
+          <button onClick={this.props.closePopup}>close me</button>
+          </div>
+        </div>
+      );
+    }
+  }
 
 class Search extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            searchBox: null,
-            searchSongs: []
+            searchBox: "",
+            searchSongs: [],
+            pop: {
+                show: false,
+                songId: "",
+            }
         }
 
     }
@@ -40,9 +95,17 @@ class Search extends React.Component{
             .catch(err => console.log("Errore nel fetching da youtube.com: " + err))
             
     }
-    addToQueue(song){
-        console.log(song)
+
+    togglePopup = song => {
+        this.setState({
+            pop: {
+                show: !this.state.pop.show,
+                song: song,
+            }
+        })
+
     }
+
     render(){
         return(
           <div>
@@ -63,7 +126,7 @@ class Search extends React.Component{
                                     </div>
                                 </div>
                                 <div>
-                                    <p onClick={() => this.props.addSong(song)}>ADD</p>
+                                    <input type="button" onClick={() => this.togglePopup(song)}></input>
                                 </div>
                                 
                             </li>
@@ -72,6 +135,14 @@ class Search extends React.Component{
                     
                 }
               </ul>
+              {
+                  this.state.pop.show ?
+                    <Popup
+                        song = {this.state.pop.song}
+                        closePopup = {this.togglePopup} />
+                    : null
+
+              }
           </div>
         )
     }

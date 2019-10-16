@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route} from "react-router-dom";
 
+
 import Navbar from "./components/navbar.js"
 import Search from "./components/search.js"
 import Home from "./components/home.js"
@@ -33,8 +34,8 @@ class Body extends React.Component{
             nextSongs: [...this.state.nextSongs, song]
         })
     }
-
     playSong = async (song, forward) => {
+        console.log("Now playing ")
         this.setState({
             currentSong: song,
             isLoading: true,
@@ -101,7 +102,9 @@ class Body extends React.Component{
 
                         <Route
                             exact path="/playlist"
-                            render = {props => <Playlists/>} />
+                            render = {props => <Playlists
+                                                    {...props}
+                                                    playSong = {this.playSong}/>} />
 
                         {/* <audio
                             autoPlay
