@@ -118,7 +118,7 @@ class Search extends React.Component{
                     this.state.searchSongs.map(song => {
                         return(
                             <li className="songRow" key={song.id}>
-                                <div className="song"  onClick = {() => this.props.playSong(song, null)}>
+                                <div className="song"  onClick = {() => this.props.playSong(song)}>
                                     <img className = "thumbnail" src={song.thumbnail} alt={song.title}></img>
                                     <div className="info">
                                         <p className = "title">{song.title}</p>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 import "./css/navbar.css"
 
@@ -9,13 +9,13 @@ class Navbar extends React.Component{
             <div className="navbar">
                 <ul>
                     <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/"><i className="icon ion-ios-home"></i></Link>
                     </li>
                     <li>
-                        <Link to="/search">Search</Link>
+                        <Link to="/search"><i className="icon ion-ios-search"></i></Link>
                     </li>
                     <li>
-                        <Link to="/playlist">Playlist</Link>
+                        <Link to="/playlist"><i className="icon ion-ios-list"></i></Link>
                     </li>
                 </ul>
             </div>

@@ -10,11 +10,11 @@ import Playlists from "./components/playlists.js"
 import Player from "./components/player.js"
 
 import "./index.css"
+import { object } from 'prop-types';
 
 const root = document.getElementById("root")
 
 class Body extends React.Component{
-    
     constructor(props){
         super(props)
         this.state={
@@ -22,54 +22,36 @@ class Body extends React.Component{
             songSrc: "",
             isLoading: false,
             hasErrors: false,
-            nextSongs: [],
-            previousSongs: [],
+            queue: [],
+            nextSong: {}
 
         }
     }
-
-    addSong = (song) =>{
-        console.log("Credo di dover aggiungere " + song)
+    componentDidMount(){
         this.setState({
-            nextSongs: [...this.state.nextSongs, song]
+            queue: JSON.parse(localStorage.getItem("onQueue")),
         })
     }
-    playSong = async (song, forward) => {
-        console.log("Now playing ")
+
+
+    doThePlay = async () => {
+        
         this.setState({
-            currentSong: song,
             isLoading: true,
             hasErrors: false,
         })
 
         document.getElementById("audioPlayer").pause()
-
-        await fetch("https://downloader.freemake.com/api/videoinfo/" + song.id)
+        console.log(this.state.nextSong.id + "--undefined")
+        await fetch("https://downloader.freemake.com/api/videoinfo/" + this.state.nextSong.id)
         .then(res => res.json())
         .then(data => {
             this.setState({
                 songSrc: data.qualities[1].url,
-                currentSong: song,
+                currentSong: this.state.nextSong,
                 isLoading: false,
                 hasErrors: false
             })
-
-            if(forward === true){
-                this.setState({
-                    previousSongs: [...this.state.previousSongs, song],
-                    nextSongs: this.state.nextSongs.filter(song => song !== this.state.currentSong)
-                })
-            } else if(forward === false){
-                this.setState({
-                    previousSongs: this.state.previousSongs.filter(song => song !== this.state.currentSong),
-                    nextSongs: [...this.state.nextSongs, this.state.currentSong]
-                })
-                
-            } else if (forward === null){
-                this.setState({
-                    previousSongs: [...this.state.previousSongs, this.state.currentSong],
-                })
-            }
             document.getElementById("audioPlayer").play()
             
         })
@@ -78,8 +60,45 @@ class Body extends React.Component{
                 isLoading: false,
                 hasErrors: true
             })
+
+            console.log("Errore: " + err)
         })
-        
+
+        this.setState({nextSong: {}})
+    }
+
+
+    playSong = async (forward) => {
+        this.setState({
+            queue: JSON.parse(localStorage.getItem("onQueue")),
+        })
+
+        let indexPlaying = this.state.queue.findIndex(i => i.id === this.state.currentSong.id)
+
+        console.log(forward)
+        console.log("Now playing ")
+        if(forward === true && indexPlaying > -1){
+            console.log("Ciao1")
+            this.setState({nextSong: this.state.queue[indexPlaying + 1]}, () => {
+                this.doThePlay();
+            })
+        } else if(forward === false  && indexPlaying > 0){
+            console.log("Ciao2")
+            this.setState({nextSong: this.state.queue[indexPlaying - 1]}, () => {
+                this.doThePlay();
+            })
+        } else if(forward === 0){
+            console.log("Ciao3")
+            this.setState({nextSong: this.state.queue[0]}, () => {
+                this.doThePlay();
+            })
+        } else if (typeof(forward) === "object"){
+            console.log("Ciao4")
+            this.setState({nextSong: forward}, () => {
+                this.doThePlay();
+            })
+        }
+       
     }
 
     render(){

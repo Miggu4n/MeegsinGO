@@ -1,0 +1,87 @@
+.playlistList{
+    
+    margin: 15px 0px 25px 0px;
+}
+.playlistList .playlistTitle{
+    font-size: 32px;
+    padding: 0;
+    margin: 0;
+}
+
+.playlistList .playlist{
+    margin: 0;
+    padding: 0;
+}
+.playlistList .playlist li{
+    background-color: #3B1F2B;
+    
+    margin: 15px 0px 15px 0px;
+    padding: 10px;
+    list-style: none;
+}
+
+.playlistList .playlist li .songInPlaylist{
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+}
+
+.playlistList .playlist li img{
+    margin: 0;
+    padding: 0;
+    width: 75px;
+    
+}
+
+.playlistList .playlist .songInfo{
+    padding: 3px 10px 3px 15px;
+    
+    
+}
+.playlistList .playlist li .songTitle{
+    font-size: 16px;
+    overflow: hidden;
+    width:100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    padding: 0;
+    margin: 0;
+}
+.playlistList .playlist li .songAuthor{
+    color: #DB162F;
+    font-size: 12px;
+    overflow: hidden;
+    width:100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    padding: 0;
+    margin: 0;
+}
+
+
+.searchBoxx{
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    
+}
+
+.searchBoxx input[type="text"]{
+    
+    margin: 30px 0px 10px 0px;
+    padding: 3px 5px 3px 15px;
+    font-size: 18px;
+}
+
+.searchBoxx i{
+    
+    font-size: 55px;
+    text-align: center;
+    height: 40px;
+}

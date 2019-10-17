@@ -8,11 +8,14 @@ class Player extends React.Component{
         super(props)
         this.state={
             isPlaying: false,
+
         }
     }
 
     play(){
-        if(!(this.props.src === "")){
+        
+        if(this.props.songSrc !== ""){
+            console.log("Ciao")
             if(this.state.isPlaying === true){
                 document.getElementById("audioPlayer").pause()
                 this.setState({
@@ -24,28 +27,22 @@ class Player extends React.Component{
                     isPlaying: true,
                 })
             }
+        } else {
+            this.props.playSong(0)
         }
         
     }
 
     next(){
-        if(this.props.nextSongs.length > 0){
-            this.props.playSong(this.props.nextSongs[0], true)
-        } else {
-            console.log("Non hai nulla dopo, pagliaccio")
-        }
-        
+        this.props.playSong(true)        
     }
     previous(){
-        if(this.props.previousSongs.length > 0){
-            this.props.playSong(this.props.previousSongs[this.props.previousSongs.length - 1], false)
-        } else {
-            console.log("Non hai nulla prima, pagliaccio")
-        }
+        this.props.playSong(false)        
     }
     render(){
         return(
             <div className="playerContainer">
+                
                 <img className="thumbnail" src={this.props.currentSong.thumbnail} alt={this.props.currentSong.title}></img>
                 <div className="player">
                     <div className="info">
@@ -61,15 +58,15 @@ class Player extends React.Component{
                         controls
                         autoPlay />
                     <div className="controls">
-                        <p
-                            className="back"
-                            onClick={() => this.previous()} > PREV</p>
-                        <p 
-                            className="play"
-                            onClick={() => this.play()}>PLAY</p>
-                        <p
-                            className="forward"
-                            onClick={() => this.next()}> NEXT</p>
+                        <i
+                            className="icon ion-ios-skip-backward"
+                            onClick={() => this.previous()} ></i>
+                        <i 
+                            className="icon ion-ios-play"
+                            onClick={() => this.play()}></i>
+                        <i
+                            className="icon ion-ios-skip-forward"
+                            onClick={() => this.next()}></i>
                     </div>
                 </div>
             </div>

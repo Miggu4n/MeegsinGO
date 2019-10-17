@@ -1,24 +1,25 @@
 .playerContainer{
     display: grid;
     grid-template-columns: 60px auto;
-    grid-template-rows: auto;
     align-items: center;
     position: fixed;
     width: 100%;
     bottom: 0;
     padding: 0;
-    background-color: black;
+    background-color: #B5BEC6;
     padding: 0px 15px 0px 15px;
+    color: #3B1F2B;
     
 }
 
 .playerContainer .thumbnail{
-    width: 60px;
+    width: 50px;
+    border-radius: 5px;
 }
 
 .playerContainer .player{
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 60% 40%;
 }
 
 .playerContainer .player .info p{
@@ -31,12 +32,13 @@
 }
 
 .playerContainer .player .controls{
-    
+       
     height: 100%;
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto;
     align-items: center;
+    font-size: 28px;
     
 }
 

@@ -2,7 +2,7 @@
     position: fixed;
     width: 100%;
     align-items: center;
-    background-color: #0D0D0D;
+    background-color:#364652;
     height: auto;
 }
 
@@ -19,6 +19,13 @@
 .navbar ul li{
     margin: 0 auto;
     padding: 0;
-    font-size: 18px;
+    font-size: 36px;
     list-style: none;
+}
+
+.navbar ul li a{
+    font-weight: bolder;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #DB162F;
 }
